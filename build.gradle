@@ -3,11 +3,13 @@ plugins {
     id "net.serenity-bdd.serenity-gradle-plugin" version "3.2.5"
 
 }
+defaultTasks 'clean', 'test', 'aggregate'
 
 group 'com.lulobank'
 version '1.0-SNAPSHOT'
 
-
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
 repositories {
     mavenCentral()
 }
