@@ -1,3 +1,5 @@
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ovallejo/reto_lulobank/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ovallejo/reto_lulobank/tree/main)
+
 # Automatización Dummy Rest API Example
 
 ## Comenzando 🚀
