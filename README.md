@@ -15,38 +15,37 @@
   * _JDK 8_
   * _Gradle 7+_
 
-## Execution of Tests⛷️
+## Tests Execution ⛷️
 
-### Execution Get All Employee Data Test Set
+### Get All Employee Data Test Set Execution
 ```
 gradlew clean test --tests *AllEmployeesDataTest -i
 
 ```
 
-### Execution Get Employee Data Test Set
+### Get Employee Data Test Set Execution
 ```
 gradlew clean test --tests *EmployeeDataTest -i
 
 ```
 
-### Execution Create a New Employee Test Set
+### Create a New Employee Test Set Execution
 ```
 gradlew clean test --tests *CreateEmployeeTest -i
 
 ```
 
-### Execution Update Employee Record Test Set
+### Update Employee Record Test Set Execution
 ```
 gradlew clean test --tests *UpdateEmployeeDataTest -i
 
 ```
 
-### Execution Delete an Employee Record Test Set
+### Delete an Employee Record Test Set Execution
 ```
 gradlew clean test --tests *DeleteEmployeeRecordTest -i
 
 ```
-
 
 ## Built with 🛠
 
