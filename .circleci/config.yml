@@ -3,39 +3,40 @@ jobs:
   test:
     docker:
       - image: circleci/openjdk:8-jdk
-#    working_directory: ~/repo
-#    environment:
-#      JVM_OPTS: -Xmx3200m
-#      TERM: dumb
+    working_directory: ~/repo
+    environment:
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
     steps:
       - checkout
-      - sonarcloud/scan
-#      - restore_cache:
-#          keys:
-#            - v1-dependencies-{{ checksum "build.gradle" }}
-#            - v1-dependencies-
-#      - run: gradle dependencies
-#      - save_cache:
-#          paths:
-#            - ~/.gradle
-#          key: v1-dependencies-{{ checksum "build.gradle" }}
-#
-#      - run: gradle clean clearReports test -i
-#  sonar:
-#    working_directory: ~/repo
-#    docker:
-#      - image: circleci/openjdk:8-jdk
-#    steps:
-#      - checkout
-#      - attach_workspace:
-#          at: ~/repo
-#      - sonarcloud/scan:
-#          sonar_token_variable_name: SONAR_TOKEN
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            - v1-dependencies-
+      - run: gradle dependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
+      - run: gradle clean clearReports test -i
+  sonar:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - sonarcloud/scan:
+          sonar_token_variable_name: SONAR_TOKEN
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.1.1
 
 workflows:
-  main:
+  ci:
     jobs:
+      - sonar
       - test:
-           context: sonarcloud
+          requires:
+            - sonar
