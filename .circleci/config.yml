@@ -9,35 +9,23 @@ jobs:
       TERM: dumb
     steps:
       - checkout
-#      - restore_cache:
-#          keys:
-#            - v1-dependencies-{{ checksum "build.gradle" }}
-#            - v1-dependencies-
-#      - run: gradle dependencies
-#      - save_cache:
-#          paths:
-#            - ~/.gradle
-#          key: v1-dependencies-{{ checksum "build.gradle" }}
-      - run: gradle test -i
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            - v1-dependencies-
+      - run: gradle dependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
+      - run: gradle test sonarqube -i
       - store_test_results:
           path: target/site/serenity
-  sonar:
-    working_directory: ~/repo
-    docker:
-      - image: circleci/openjdk:11-jdk
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/repo
-      - sonarcloud/scan:
-          sonar_token_variable_name: SONAR_TOKEN
-orbs:
-  sonarcloud: sonarsource/sonarcloud@1.1.1
 
 workflows:
   main:
     jobs:
-      - sonar
       - test:
-          requires:
-            - sonar
+          context: SonarCloud
+
