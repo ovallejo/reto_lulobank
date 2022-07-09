@@ -8,8 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(features = "src/test/resources/features/update_employee_data.feature",
         glue = "com.lulobank.stepsdefinitions",
         plugin ={"pretty",
-                "junit:target/cucumber-reports/Cucumber.xml",
-                "html:target/cucumber-reports"}
+                "junit:target/cucumber-reports/cucumber.xml",
+                "html:target/cucumber-reports/report-html"}
 )
 public class UpdateEmployeeDataTest {
 }
