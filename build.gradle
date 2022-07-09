@@ -17,12 +17,12 @@ sonarqube {
         property "sonar.projectKey", "ovallejo_reto_lulobank"
         property "sonar.organization", "ovallejo"
         property "sonar.host.url", "https://sonarcloud.io"
-        property "sonar.projectName=reto_lulobank"
-        property "sonar.links.homepage=https://github.com/ovallejo/reto_lulobank"
-        property "sonar.links.scm=https://github.com/ovallejo/reto_lulobank"
-        property "sonar.links.issue=https://github.com/ovallejo/reto_lulobank/issues"
-        property "sonar.sources=src/"
-        property "sonar.exclusions=**/*.java"
+        property "sonar.projectName", "reto_lulobank"
+        property "sonar.links.homepage", "https://github.com/ovallejo/reto_lulobank"
+        property "sonar.links.scm", "https://github.com/ovallejo/reto_lulobank"
+        property "sonar.links.issue", "https://github.com/ovallejo/reto_lulobank/issues"
+        property "sonar.sources", "src/"
+        property "sonar.exclusions", "**/*.java"
     }
 }
 
