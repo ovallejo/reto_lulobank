@@ -1,15 +1,14 @@
 package com.lulobank.stepsdefinitions;
 
 import com.lulobank.integrations.DummyRestApi;
+import com.lulobank.questions.CheckResponse;
 import com.lulobank.questions.EmployeesMust;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import org.hamcrest.core.IsEqual;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
-import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
 import static org.hamcrest.Matchers.empty;
 
 public class GetAllEmployeesDataStepDefinition {
@@ -42,10 +41,7 @@ public class GetAllEmployeesDataStepDefinition {
 
     @Then("Status Code {int} and Message {string}")
     public void statusCodeAndMessage(int statusCode, String message) {
-        theActorInTheSpotlight().should(seeThatResponse("Employee Rest Service should be correct",
-                response -> response.statusCode(statusCode)
-                        .body("message", IsEqual.equalTo(message)))
-        );
+        theActorInTheSpotlight().should(CheckResponse.getAllEmployeesData(statusCode, message));
     }
 
     @Given("I want get employee data with id {int}")
