@@ -20,6 +20,8 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
       - run: gradle clean clearReports test -i
+      - store_test_results:
+          path: target/site/serenity
   sonar:
     working_directory: ~/repo
     docker:

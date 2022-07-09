@@ -17,6 +17,12 @@ sonarqube {
         property "sonar.projectKey", "ovallejo_reto_lulobank"
         property "sonar.organization", "ovallejo"
         property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.projectName=reto_lulobank"
+        property "sonar.links.homepage=https://github.com/ovallejo/reto_lulobank"
+        property "sonar.links.scm=https://github.com/ovallejo/reto_lulobank"
+        property "sonar.links.issue=https://github.com/ovallejo/reto_lulobank/issues"
+        property "sonar.sources=src/"
+        property "sonar.exclusions=**/*.java"
     }
 }
 
@@ -29,7 +35,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     testCompileOnly 'org.projectlombok:lombok:1.18.24'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
-
     implementation group: 'net.serenity-bdd', name: 'serenity-core', version: '3.2.5'
     implementation group: 'net.serenity-bdd', name: 'serenity-screenplay', version: '3.2.5'
     implementation group: 'net.serenity-bdd', name: 'serenity-screenplay-webdriver', version: '3.2.5'
@@ -40,7 +45,6 @@ dependencies {
     implementation group: 'com.devskiller', name: 'jfairy', version: '0.6.5'
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.36'
     testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.36'
-
 }
 gradle.startParameter.continueOnFailure = true
 test.finalizedBy(aggregate)
