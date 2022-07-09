@@ -13,7 +13,7 @@ public class AutomationConfiguration {
     private EnvironmentVariables environmentVariables;
 
     @Before
-    public void preConfig(){
+    public void preConfig() {
         OnStage.setTheStage(new OnlineCast());
         OnStage.theActorCalled("Cliente");
         String baseURL = environmentVariables.optionalProperty("env.dummy.base.url").orElseThrow(IllegalArgumentException::new);
@@ -21,7 +21,7 @@ public class AutomationConfiguration {
     }
 
     @AfterScenario
-    public void printResponse(){
+    public void printResponse() {
         SerenityRest.lastResponse().body().prettyPrint();
         SerenityRest.reset();
     }

@@ -11,6 +11,8 @@ import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeT
 import static org.hamcrest.Matchers.*;
 
 public class CheckResponse {
+    private static final String MESSAGE = "message";
+
     private CheckResponse() {
     }
 
@@ -19,7 +21,7 @@ public class CheckResponse {
         return ResponseConsequence.seeThatResponse(response -> response
                 .statusCode(200)
                 .body("status", is(equalTo("success")))
-                .body("message", equalTo("Successfully! Record has been added."))
+                .body(MESSAGE, equalTo("Successfully! Record has been added."))
                 .body("data.name", equalTo(createEmployee.getName()))
                 .body("data.salary", equalTo(createEmployee.getSalary()))
                 .body("data.id", isA(Integer.class)));
@@ -29,10 +31,31 @@ public class CheckResponse {
 
         return seeThatResponse("Employee Rest Service should be correct",
                 response -> response.statusCode(statusCode)
-                        .body("message", IsEqual.equalTo(message)));
+                        .body(MESSAGE, IsEqual.equalTo(message)));
     }
 
     public static Question<Boolean> statusCodeResponse(int statusCode) {
         return actor -> statusCode == SerenityRest.lastResponse().statusCode();
+    }
+
+    public static ResponseConsequence deleteEmployee() {
+        String employeeId = OnStage.theActorInTheSpotlight().recall("deleteEmpId");
+        return ResponseConsequence.seeThatResponse(response -> response
+                .statusCode(200)
+                .body("status", is(equalTo("success")))
+                .body(MESSAGE, equalTo("Successfully! Record has been deleted"))
+                .body("data", equalTo(employeeId))
+        );
+    }
+
+    public static ResponseConsequence updateEmployeeRecord() {
+        CreateEmployee createEmployee = OnStage.theActorInTheSpotlight().recall("createObject");
+        return ResponseConsequence.seeThatResponse(response -> response
+                .statusCode(200)
+                .body("status", is(equalTo("success")))
+                .body(MESSAGE, equalTo("Successfully! Record has been updated."))
+                .body("data.name", equalTo(createEmployee.getName()))
+                .body("data.salary", equalTo(createEmployee.getSalary()))
+        );
     }
 }

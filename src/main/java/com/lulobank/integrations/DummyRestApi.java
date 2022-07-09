@@ -23,8 +23,8 @@ public class DummyRestApi {
     }
 
     public static Performable getEmployeeData(int employeeId) {
-        return Task.where("Dummy Get Employee Rest Service",actor->{
-           actor.attemptsTo(Get.resource("employee/{id}").
+        return Task.where("Dummy Get Employee Rest Service", actor -> {
+            actor.attemptsTo(Get.resource("employee/{id}").
                     with(request -> request.pathParam("id", employeeId)));
             actor.attemptsTo(Check.whether(CheckResponse.statusCodeResponse(200)).otherwise(getEmployeeData(employeeId)));
 
@@ -32,7 +32,7 @@ public class DummyRestApi {
     }
 
     public static Performable createEmployee() {
-        return Task.where("Dummy Create Employee Rest Service",actor->{
+        return Task.where("Dummy Create Employee Rest Service", actor -> {
             actor.attemptsTo(Post.to("create")
                     .with(request -> request.body(theActorInTheSpotlight().recall("createBody").toString())));
             actor.attemptsTo(Check.whether(CheckResponse.statusCodeResponse(200)).otherwise(createEmployee()));
@@ -41,13 +41,24 @@ public class DummyRestApi {
         });
     }
 
-    public static Performable updateEmployee(int employeeId) {
-        return Task.where("Dummy Update Employee Data Rest Service", Put.to("update/{id}")
-                .with(request -> request.pathParam("id", employeeId)));
+    public static Performable updateEmployee(String employeeId) {
+        return Task.where("Dummy Update Employee Data Rest Service", actor -> {
+            actor.attemptsTo(Put.to("update/{id}")
+                    .with(request -> request.pathParam("id", employeeId)
+                            .body(theActorInTheSpotlight().recall("createBody").toString())));
+            actor.attemptsTo(Check.whether(CheckResponse.statusCodeResponse(200)).otherwise(updateEmployee(employeeId)));
+            actor.remember("updateEmpId", employeeId);
+
+
+        });
     }
 
-    public static Performable deleteEmployee(int employeeId) {
-        return Task.where("Dummy Delete Employee Data Rest Service", Delete.from("delete/{id}")
-                .with(request -> request.pathParam("id", employeeId)));
+    public static Performable deleteEmployee(String employeeId) {
+        return Task.where("Dummy Delete Employee Data Rest Service", actor -> {
+            actor.attemptsTo(Delete.from("delete/{id}")
+                    .with(request -> request.pathParam("id", employeeId)));
+            actor.attemptsTo(Check.whether(CheckResponse.statusCodeResponse(200)).otherwise(deleteEmployee(employeeId)));
+            actor.remember("deleteEmpId", employeeId);
+        });
     }
 }

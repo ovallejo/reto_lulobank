@@ -1,4 +1,5 @@
 Feature: Delete Employees
-  Scenario: Delete Employee
+
+  Scenario: Employee successfully deleted
     Given Delete Employee Record
     Then Check Delete Record Request

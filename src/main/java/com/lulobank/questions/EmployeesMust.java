@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class EmployeesMust {
     private static final List<Employee> employeeList = SerenityRest.lastResponse()
             .body().jsonPath().getList("data", Employee.class);
+
     private EmployeesMust() {
     }
 

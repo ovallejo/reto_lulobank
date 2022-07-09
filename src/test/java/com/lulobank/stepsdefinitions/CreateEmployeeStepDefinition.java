@@ -19,7 +19,7 @@ public class CreateEmployeeStepDefinition {
         OnStage.theActorInTheSpotlight().attemptsTo(DummyRestApi.createEmployee());
     }
 
-    @Then("Check Request")
+    @Then("Check Create Record Request")
     public void checkRequest() {
         OnStage.theActorInTheSpotlight().should(CheckResponse.createEmployee());
     }

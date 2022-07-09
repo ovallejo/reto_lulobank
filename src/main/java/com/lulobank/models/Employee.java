@@ -18,7 +18,7 @@ public class Employee {
     private int employee_age;
     private String profile_image;
 
-    @JsonPOJOBuilder(withPrefix="")
+    @JsonPOJOBuilder(withPrefix = "")
     public static class EmployeeBuilder {
     }
 }

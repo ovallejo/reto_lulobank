@@ -1,6 +1,6 @@
 package com.lulobank.exceptions;
 
-public class LuloBankExceptions extends RuntimeException{
+public class LuloBankExceptions extends RuntimeException {
     public LuloBankExceptions(String message) {
         super(message);
     }
