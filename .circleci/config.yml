@@ -24,6 +24,8 @@ jobs:
           command: gradle test sonarqube -i
       - store_artifacts:
           path: target/site/serenity
+      - store_test_results:
+          path: target/cucumber-reports
 
 workflows:
   main:

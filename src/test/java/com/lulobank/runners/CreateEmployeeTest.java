@@ -7,6 +7,9 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features = "src/test/resources/features/create_employee.feature",
         glue = "com.lulobank.stepsdefinitions",
-        plugin = "pretty")
+        plugin ={"pretty",
+                "junit:target/cucumber-reports/Cucumber.xml",
+                "html:target/cucumber-reports"}
+)
 public class CreateEmployeeTest {
 }

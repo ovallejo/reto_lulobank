@@ -7,6 +7,9 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features = "src/test/resources/features/delete_employee_record.feature",
         glue = "com.lulobank.stepsdefinitions",
-        plugin = "pretty")
+        plugin ={"pretty",
+                "junit:target/cucumber-reports/Cucumber.xml",
+                "html:target/cucumber-reports"}
+)
 public class DeleteEmployeeRecordTest {
 }
