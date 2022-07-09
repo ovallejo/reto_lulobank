@@ -9,17 +9,18 @@ jobs:
       TERM: dumb
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            - v1-dependencies-
-      - run: gradle dependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
-
-      - run: gradle clean clearReports test -i
+#      - restore_cache:
+#          keys:
+#            - v1-dependencies-{{ checksum "build.gradle" }}
+#            - v1-dependencies-
+#      - run: gradle dependencies
+#      - save_cache:
+#          paths:
+#            - ~/.gradle
+#          key: v1-dependencies-{{ checksum "build.gradle" }}
+      - run:
+        - name: Automation Test
+        - command: gradle test -i
       - store_test_results:
           path: target/site/serenity
   sonar:
