@@ -18,9 +18,7 @@ jobs:
 #          paths:
 #            - ~/.gradle
 #          key: v1-dependencies-{{ checksum "build.gradle" }}
-      - run:
-        - name: Automation Test
-        - command: gradle test -i
+      - run: gradle test -i
       - store_test_results:
           path: target/site/serenity
   sonar:
